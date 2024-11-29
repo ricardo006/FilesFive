@@ -48,7 +48,8 @@
     color: #A0F6DB;
     border-radius: 5px;
     box-sizing: border-box;
-    background-color: #122335;
+    background-color: #0d1b2a;
+    border-radius: 20px;
 }
 
 input[type="file"]:focus + .btn-file {
@@ -64,7 +65,7 @@ button.btn-enviar-arquivo {
     border-radius: 20px;
     padding: 0.8rem;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #001233;
     box-sizing: border-box;
     margin-bottom: 10px;
@@ -98,6 +99,12 @@ button.btn-enviar-arquivo:focus {
     margin-left: 20px;
     color: #A0F6DB;
     font-size: 28px;
+}
+
+.title-username {
+    margin-left: 20px;
+    color: #8ce1b3;
+    font-size: 22px;
 }
 
 .text-upload-dashboard {
@@ -206,7 +213,7 @@ img.img-files, img.img-list-files {
     width: calc(100% - 40px);
     max-width: 1200px;
     border-radius: 10px;
-    background-color: #001233;
+    background-color: #122335;
     border-radius: 20px 20px;
     padding-bottom: 40px;
 }
@@ -253,7 +260,7 @@ img.img-files, img.img-list-files {
 }
 
 .file-table tr:nth-child(even) {
-    background-color: #003249;
+    background-color: #182a3d;
     margin-bottom: 20px;
 }
 
@@ -327,3 +334,34 @@ img.img-files, img.img-list-files {
     font-size: 16px;
 }
 
+.navbar .title-app {
+    color: #A0F6DB;
+}
+
+/* Estilos para mensagens de erros, sucesso e warning */
+.alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px 10px 20px;
+    padding: 10px;
+    border-radius: 5px;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.alert-danger {
+    background-color: #f8e0e2;
+    color: #ef233c;
+    border: 1px solid #f57e8b;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

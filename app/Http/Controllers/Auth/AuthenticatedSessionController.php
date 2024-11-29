@@ -45,11 +45,15 @@ class AuthenticatedSessionController extends Controller
                 ->withInput($request->only('email'));
         }
     
-        // Regenera a sessão para evitar ataques de fixação de sessão
         $request->session()->regenerate();
+
+        $user = Auth::user();
     
         // Redireciona para a rota de dashboard ou outra rota protegida
-        return redirect()->intended(route('dashboard'))->with('success', 'Login realizado com sucesso.');
+        return redirect()->intended(route('dashboard'))
+            ->with('success', 'Login realizado com sucesso.')
+            ->with('userName', $user->name)
+            ->with('userId', $user->id);
     }
     
 

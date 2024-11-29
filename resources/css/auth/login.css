@@ -33,6 +33,13 @@ button.btn-entrar {
     font-weight: 700;
     border: 0 !important;
     margin-top: 20px;
+    cursor: pointer;
+}
+
+button.btn-entrar:hover {
+    background-color: #006d77;
+    color: #A0F6DB;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 a.btn-inscreva {
@@ -40,6 +47,7 @@ a.btn-inscreva {
     margin-top: 20px;
     margin-bottom: 10px;
     text-decoration: none;
+    cursor: pointer;
 }
 
 a.btn-ir-login {
@@ -74,10 +82,14 @@ label {
 input {
     padding: 10px;
     height: 30px;
-    background-color: #E4F9F2;
-    border-radius: 20px;
+    background-color: #dff8fa;
+    border-radius: 10px;
     margin-bottom: 10px;
-    border: 1px solid #E4F9F2;
+    border: none !important
+}
+
+input:focus {
+    outline: 2.8px solid #079caa;
 }
 
 .check-left {
@@ -96,4 +108,21 @@ input {
 .check-left input[type="checkbox"]:checked {
     background-color: #A0F6DB;
     border: none;
+}
+
+.alert-danger-message {
+    background-color: #fae0e4;
+    border-radius: 14px;
+    color: #f95a77;
+    font-weight: 700;
+    padding-bottom: 14px;
+    text-align: left;
+}
+
+.error-message {
+    font-size: 14px;
+    text-align: left;
+    color: #f95a77;
+    font-weight: 700;
+    padding-bottom: 14px;
 }

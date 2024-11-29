@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class FileController extends Controller
 {
@@ -13,7 +14,7 @@ class FileController extends Controller
     }
     
     public function index() {
-        $files = Storage::files('uploads');
+        $files = File::where('user_id', Auth::id())->get();
 
         return view('files.index', compact('files'));
     }
@@ -36,16 +37,26 @@ class FileController extends Controller
             'file' => 'required|file|max:2048', // Limite de 2MB
         ]);
 
-        $path = $request->file('file')->store('uploads');
+        $file = $request->file('file');
+        $userId = auth()->id();
 
-        return redirect()->route('upload.form')->with('success', 'Arquivo enviado com sucesso!');
+        $path = $file->store('uploads');
+
+        $fileRecord = new File();
+        $fileRecord->user_id = $userId;
+        $fileRecord->file_path = $path;
+        $fileRecord->status = 'pending';
+        $fileRecord->save();
+
+        return redirect()->route('files.create')
+            ->with('success', 'Arquivo enviado com sucesso!')
+            ->with('file_path', $path);
     }
 
     // Lista os arquivos
     public function listFiles()
     {
         $files = Storage::allFiles('uploads');
-        dd($files);
         return view('files.list', compact('files'));
     }
 
@@ -58,6 +69,13 @@ class FileController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $path = $file->storeAs('uploads', $file->getClientOriginalName());
+
+            // Salvando no banco de dados
+            $newFile = new File();
+            $newFile->user_id = auth()->id();
+            $newFile->path = $path;
+            $newFile->status = 'pending';
+            $newFile->save();
 
             // Salva o caminho do arquivo no localStorage (no navegador)
             return redirect()->route('files.create')

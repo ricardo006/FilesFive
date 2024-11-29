@@ -112,9 +112,17 @@ input:focus {
 
 .alert-danger-message {
     background-color: #fae0e4;
-    border-radius: 16px;
-    color: #ef233c;
-    font-weight: 600;
-    padding: 10px;
+    border-radius: 14px;
+    color: #f95a77;
+    font-weight: 700;
+    padding-bottom: 14px;
     text-align: left;
+}
+
+.error-message {
+    font-size: 14px;
+    text-align: left;
+    color: #f95a77;
+    font-weight: 700;
+    padding-bottom: 14px;
 }
