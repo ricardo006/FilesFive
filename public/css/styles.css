@@ -1,0 +1,329 @@
+.container-upload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.card-upload {
+    width: 500px;
+    background-color: #122335;
+    border-radius: 10px;
+    box-shadow: 0  0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-upload h1 {
+    color: #A0F6DB;
+    margin-bottom: 60px;
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.form-enviar-arquivo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-enviar-arquivo div.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #A0F6DB;
+}
+
+.form-enviar-arquivo div.form-group  input[type="file"] {
+    width: 100%;
+    height: 120px;
+    padding: 8px;
+    border: 1px dashed #A0F6DB;
+    color: #A0F6DB;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #122335;
+}
+
+input[type="file"]:focus + .btn-file {
+    background-color: #A0F6DB;
+    color: #fff;
+}
+
+button.btn-enviar-arquivo {
+    width: 100%;
+    height: 60px;
+    background-color: #A0F6DB;
+    border: 0 !important;
+    border-radius: 20px;
+    padding: 0.8rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #001233;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: background-color 0.3 ease;
+    font-family: Nunito, sans-serif;
+}
+
+button.btn-enviar-arquivo:hover {
+    background-color: #8ce1b3;
+}
+
+button.btn-enviar-arquivo:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 178, 193, 0.5);;
+}
+
+/* Página de dashboard */
+.content-card-dashboard {
+    display: flex;
+    gap: 10px; 
+    justify-content: start; 
+    flex-wrap: wrap;
+    height: auto;
+    width: auto;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.title-page {
+    margin-left: 20px;
+    color: #A0F6DB;
+    font-size: 28px;
+}
+
+.text-upload-dashboard {
+    text-decoration: 0 !important;
+    font-size: 16px;
+    color: #A0F6DB;
+}
+
+.h2-upload, .h2-listagem {
+    color: #A0F6DB;
+}
+
+.card-upload-arquivos {
+    display: block;
+    background-color: #122335;
+    border-radius: 20px; 
+    padding: 10px;
+    flex: 1 1 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.6s ease, background-color 0.4s;
+}
+
+.card-upload-arquivos:hover {
+    background-color: #0d284b;
+    transition: background-color 0.5s;
+    text-decoration: none !important;
+    transform: translateY(-5px);
+}
+
+
+img.img-files, img.img-list-files {
+    width: 300px;
+    height: auto;
+    padding: 30px;
+}
+
+@media (max-width: 760px) {
+    .content-card-dashboard {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        max-width: 100vw;
+        overflow-x: auto;
+    }
+
+    .card-upload-arquivos {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    img.img-files, img.img-list-files {
+        max-width: 80%;
+        height: 60%;
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #122335;
+    color: #A0F6DB;
+    padding: 10px 20px;
+    border-radius: 5px 5px 0 0;
+}
+
+.navbar-title {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #c9184a;
+    border: 2px solid #f3d4dd;
+    color: #f3d4dd;
+    border: 0;
+    padding: 8px 16px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: Nunito, sans-serif;
+    transition: background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #ff0a54;
+    color: #edf2f4;
+}
+
+.btn-logout i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Estilos da tabela de listagem de arquivos */
+.table-container {
+    margin: 50px auto;
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    border-radius: 10px;
+    background-color: #001233;
+    border-radius: 20px 20px;
+    padding-bottom: 40px;
+}
+
+.title-table h1.title-page {
+    text-align: center;
+    color: #A0F6DB;
+    font-size: 24px;
+    padding-top: 20px;
+}
+
+.action-cell {
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Nunito, sans-serif;
+    font-size: 14px;
+    color: #edf6f9;
+    border-radius: 20px;
+
+}
+
+.tr-header {
+    height: 60px;
+    background-color: #1d3557;
+    color: #e3ecfd;
+    pointer-events: auto;
+}
+
+.tr-header:hover {
+    background-color: #A0F6DB;
+    color: #d7e1f5;
+}
+
+.file-table td, .file-table th {
+    padding: 10px;
+    text-align: left;
+}
+
+.file-table tr:nth-child(even) {
+    background-color: #003249;
+    margin-bottom: 20px;
+}
+
+#fileTableBody {
+    bottom: 30px;
+}
+
+.file-table tr:hover {
+    background-color: #1d3557;
+}
+
+/* Botões de ações */
+.btn-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-aprovar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 12px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    color: #1d3557;
+    transition: background-color 0.3s ease;
+    background-color: #80ffdb;
+
+}
+
+.btn-reprovar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 12px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    color: #edf6f9;
+    transition: background-color 0.3s ease;
+    background-color: #ef233c;
+}
+
+.btn-aprovar:hover {
+    background-color: #006d77;
+    color: #80ffdb;
+}
+
+.btn-reprovar:hover {
+    background-color: #c9184a;
+    color: #edf6f9;
+}
+
+.btn-action i {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+

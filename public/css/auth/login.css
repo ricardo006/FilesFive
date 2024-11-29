@@ -1,0 +1,120 @@
+.container-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 !important;
+}
+
+.card-login {
+    width: 300px;
+    background-color: #A0F6DB;
+    padding: 20px;
+    border-radius: 20px 20px 30px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 !important;
+    padding: 0;
+}
+
+div.content-form {
+    background-color: #003249;
+    border-radius: 0 50px 20px 20px;
+    padding: 20px;
+}
+
+button.btn-entrar {
+    background-color: #A0F6DB;
+    color: #003249;
+    border-radius: 10px;
+    height: 50px;
+    font-family: Nunito, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    border: 0 !important;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+button.btn-entrar:hover {
+    background-color: #006d77;
+    color: #A0F6DB;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+a.btn-inscreva {
+    color: #A0F6DB;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.btn-ir-login {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    gap: 8px;
+    text-decoration: none;
+    color: #A0F6DB;
+    margin-top: 2px;
+    text-decoration: none;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #003249;
+    margin-bottom: 20px;
+}
+
+form.form-login {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    text-align: left;
+    margin-bottom: 5px;
+    color: #A0F6DB;
+}
+
+input {
+    padding: 10px;
+    height: 30px;
+    background-color: #dff8fa;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: none !important
+}
+
+input:focus {
+    outline: 2.8px solid #079caa;
+}
+
+.check-left {
+    display: flex;
+    align-items: left;
+    gap: 5px; 
+}
+
+.check-left input[type="checkbox"] {
+    width: 15px; 
+    height: 15px; 
+    accent-color: #A0F6DB;
+    cursor: pointer; 
+}
+
+.check-left input[type="checkbox"]:checked {
+    background-color: #A0F6DB;
+    border: none;
+}
+
+.alert-danger-message {
+    background-color: #fae0e4;
+    border-radius: 16px;
+    color: #ef233c;
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+}

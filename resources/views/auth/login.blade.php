@@ -1,56 +1,47 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.app')
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+@section('content')
+    <div class="container-login">
+        <div class="card-login">
+            <div class="title-login">
+                <h2 class="login-title">Login</h2>
             </div>
+            <div class="content-form">
+                <form class="form-login" method="POST" action="{{ route('login') }}">
+                    @csrf
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                    <label class="" for="email">Email</label>
+                    <input id="email" type="email" name="email" placeholder="Email" class="form-control" required>
+                    @error('email')
+                        <div class="error-message" style="color: red;">{{ $message }}</div>
+                    @enderror
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+                    <label class="" for="password">Senha</label>
+                    <input id="password" type="password" name="password" placeholder="Senha" class="form-control" required>
+                    @error('password')
+                        <div class="error-message" style="color: red;">{{ $message }}</div>
+                    @enderror
+                    
+                    <label class="check-left">
+                        <input type="checkbox" name="remember" value="1"> Lembrar-me
+                    </label>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+                    <button type="submit" class="btn btn-entrar">
+                        <span class="text-entrar">Entrar</span>
+                    </button>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                    <a class="btn btn-inscreva" href="{{ route('register') }}">
+                        Inscreva-se
                     </a>
-                @endif
+                </form>
 
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
+                <!-- Exibindo a mensagem de erro geral, se houver -->
+                @if(session('errors') && session('errors')->has('general'))
+                    <div class="alert alert-danger-message">
+                        {{ session('errors')->get('general')[0] }}
+                    </div>
+                @endif
             </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+        </div>
+    </div>  
+@endsection

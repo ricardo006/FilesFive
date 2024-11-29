@@ -15,6 +15,9 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css')
     .disableNotifications();
 
+mix.styles([
+    'resources/css/auth/login.css',
+], 'public/css/auth/login.css');
 
 if (mix.inProduction()) {
     mix.version();
