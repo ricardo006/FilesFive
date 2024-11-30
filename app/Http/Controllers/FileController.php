@@ -9,18 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class FileController extends Controller
 {
-    public function __construct() {
+    public function __construct() 
+    {
         $this->middleware('auth');
     }
     
-    public function index() {
-        $files = File::where('user_id', Auth::id())->get();
+    public function index(Request $request) 
+    {
+        $showAll = $request->query('showAll', false);
+        $files = $showAll ? File::all() : File::where('user_id', Auth::id())->get();
 
         return view('files.index', compact('files'));
     }
 
-    
-    public function create() {
+    public function create() 
+    {
         return view('files.create');
     }
 
@@ -28,6 +31,15 @@ class FileController extends Controller
     public function showUploadForm()
     {
         return view('files.upload');
+    }
+
+    public function listAllFiles()
+    {
+        $this->authorize('viewAny', File::class);
+
+        $files = File::all();
+
+        return view('files.all', compact('files'));
     }
 
     // Lida com o upload do arquivo
@@ -88,19 +100,27 @@ class FileController extends Controller
     }
 
 
-    public function approve($id) {
+    public function approve($id) 
+    {
         $file = File::findOrFail($id);
+
+        $this->authorize('updateStatus', $file);
+
         $file->status = 'approved';
         $file->save();
 
-        return redirect()->route('files.index')->with('success', 'Arquivo aprovado.');
+        return redirect()->route('files.index', request()->query())->with('success', 'Arquivo aprovado.');
     }
 
-    public function reject($id) {
+    public function reject($id) 
+    {
         $file = File::findOrFail($id);
+
+        $this->authorize('updateStatus', $file);
+
         $file->status = 'rejected';
         $file->save();
 
-        return redirect()->route('files.index')->with('error', 'Arquivo reprovado.');
+        return redirect()->route('files.index', request()->query())->with('success', 'Arquivo reprovado.');
     }
 }
