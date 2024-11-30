@@ -34,25 +34,52 @@
     align-items: center;
 }
 
-.form-enviar-arquivo div.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    color: #A0F6DB;
+.form-enviar-arquivo .form-group {
+    position: relative;
+    width: 100%;
 }
 
-.form-enviar-arquivo div.form-group  input[type="file"] {
+.file-name {
+    display: block;
+    margin-top: 10px;
+    color: #A0F6DB;
+    font-size: 14px;
+    text-align: center;
+    margin: 10px;
+}
+
+.form-enviar-arquivo .file-label {
     width: 100%;
     height: 120px;
-    padding: 8px;
     border: 1px dashed #A0F6DB;
-    color: #A0F6DB;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #0d1b2a;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d1b2a;
+    color: #A0F6DB;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
 }
 
-input[type="file"]:focus + .btn-file {
+.form-enviar-arquivo .file-label input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+
+.form-enviar-arquivo .file-label i {
+    width: 50px;
+    height: 50px;
+    color: #A0F6DB;
+}
+
+.form-enviar-arquivo .file-label input[type="file"]:focus + .btn-file {
     background-color: #A0F6DB;
     color: #fff;
 }
@@ -79,7 +106,7 @@ button.btn-enviar-arquivo:hover {
 
 button.btn-enviar-arquivo:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 178, 193, 0.5);;
+    box-shadow: 0 0 0 2px #00b2c180;;
 }
 
 /* Página de dashboard */
@@ -103,7 +130,7 @@ button.btn-enviar-arquivo:focus {
 
 .title-username {
     margin-left: 20px;
-    color: #8ce1b3;
+    color: #A0F6DB;
     font-size: 22px;
 }
 
@@ -123,17 +150,17 @@ button.btn-enviar-arquivo:focus {
     border-radius: 20px; 
     padding: 10px;
     flex: 1 1 30%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.6s ease, background-color 0.4s;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .card-upload-arquivos:hover {
-    background-color: #0d284b;
+    background: linear-gradient(157deg, #122335, #003249);
     transition: background-color 0.5s;
     text-decoration: none !important;
     transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 img.img-files, img.img-list-files {
     width: 300px;
@@ -183,16 +210,16 @@ img.img-files, img.img-list-files {
 .btn-logout {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
     background-color: #c9184a;
     border: 2px solid #f3d4dd;
-    color: #f3d4dd;
+    color: #f8e7ec;
     border: 0;
     padding: 8px 16px;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     font-family: Nunito, sans-serif;
     transition: background-color 0.3s;
 }
@@ -218,11 +245,67 @@ img.img-files, img.img-list-files {
     padding-bottom: 40px;
 }
 
+
+.title-table {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
 .title-table h1.title-page {
     text-align: center;
     color: #A0F6DB;
     font-size: 24px;
-    padding-top: 20px;
+    margin: 0px;
+}
+
+.group-buttons-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.group-buttons-actions i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 16px;
+    height: 16px;
+}
+
+a.btn-allFiles, a.btn-myFiles {
+    background-color: #003049;
+    color: #A0F6DB;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: Nunito, sans-serif;
+    height: 40px;
+    border: 0;
+    border-radius: 16px;
+    gap: 8px;
+    padding: 0 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+a.btn-myFiles:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #A0F6DB;
+    color: #003049;
+}
+
+a.btn-allFiles:hover {
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #A0F6DB;
+    color: #003049;
+}
+
+.btn.ativo {
+    background-color: #A0F6DB;
+    color: #003049;
 }
 
 .action-cell {
@@ -296,10 +379,12 @@ img.img-files, img.img-list-files {
     padding: 0 12px;
     height: 40px;
     border: none;
-    border-radius: 5px;
+    border-radius: 14px;
     color: #1d3557;
     transition: background-color 0.3s ease;
     background-color: #80ffdb;
+    box-shadow: none !important;
+    margin: 0 5px;
 
 }
 
@@ -312,10 +397,12 @@ img.img-files, img.img-list-files {
     padding: 0 12px;
     height: 40px;
     border: none;
-    border-radius: 5px;
-    color: #edf6f9;
+    border-radius: 14px;
+    color: #f8e7ec;
     transition: background-color 0.3s ease;
-    background-color: #ef233c;
+    background-color: #c9184a;
+    box-shadow: none !important;
+    margin: 0 5px;
 }
 
 .btn-aprovar:hover {
@@ -324,7 +411,7 @@ img.img-files, img.img-list-files {
 }
 
 .btn-reprovar:hover {
-    background-color: #c9184a;
+    background-color: #d63361;
     color: #edf6f9;
 }
 
