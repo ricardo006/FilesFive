@@ -13,16 +13,9 @@ Route::prefix('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/register', [RegisteredUserController::class, 'store']);
+    Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 });
 
-
-Route::get('/upload', [FileController::class, 'showUploadForm'])->name('upload.form');
-Route::post('/upload', [FileController::class, 'uploadFile'])->name('upload.file');
-
-Route::get('/files', [FileController::class, 'index'])->name('files'); 
-Route::get('/files/create', [FileController::class, 'create'])->name('files.create'); 
-Route::post('/files/store', [FileController::class, 'store'])->name('files.store'); 
 
 // Grupo de rotas protegidas por autenticação
 Route::middleware('auth')->group(function () {
@@ -30,7 +23,17 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
     
+    Route::post('/upload', [FileController::class, 'uploadFile'])->name('upload.file');
+
+    Route::get('/files', [FileController::class, 'index'])->name('files.index'); 
+    Route::get('/files/all', [FileController::class, 'listAllFiles'])->name('files.all');
     Route::get('/files/create', [FileController::class, 'create'])->name('files.create');
+    Route::post('/files/store', [FileController::class, 'store'])->name('files.store'); 
+    Route::post('/files/upload', [FileController::class, 'showUploadForm'])->name('upload.form'); 
+    Route::resource('files', FileController::class)->except(['create', 'store']);
+    Route::put('files/{id}/approve', [FileController::class, 'approve'])->name('files.approve');
+    Route::put('files/{id}/reject', [FileController::class, 'reject'])->name('files.reject');
+
 });
 
 // Inclui as rotas de autenticação do Laravel (login, registro, etc.)
