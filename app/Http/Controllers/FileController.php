@@ -17,7 +17,32 @@ class FileController extends Controller
     public function index(Request $request) 
     {
         $showAll = $request->query('showAll', false);
-        $files = $showAll ? File::all() : File::where('user_id', Auth::id())->get();
+        $files = $showAll 
+            ? File::with('user')->get()
+            : File::where('user_id', Auth::id())->with('user')->get();
+        
+        $files->map(function ($file) {
+            switch ($file->status) {
+                case 'pending':
+                    $file->translated_status = 'Pendente';
+                    break;
+
+                case 'approved':
+                    $file->translated_status = 'Aprovado';
+                    break;
+
+                case 'rejected':
+                    $file->translated_status = 'Reprovado';
+                    break;
+
+                default:
+                    $file->translated_status  = 'Desconhecido';
+                    break;
+
+            };
+
+            return $file;
+        });
 
         return view('files.index', compact('files'));
     }

@@ -29,9 +29,14 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         // Validação personalizada para email e senha
-        $validated = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:8',
+        ],[
+            'email.required' => 'O campo de email é obrigatório.',
+            'email.email' => 'O email fornecido deve ser um endereço de email válido.',
+            'password.required' => 'O campo de senha é obrigatório.',
+            'password.min' => 'A senha deve ter pelo menos 8 caracteres.',
         ]);
     
         $credentials = $request->only('email', 'password');
@@ -53,6 +58,7 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(route('dashboard'))
             ->with('success', 'Login realizado com sucesso.')
             ->with('userName', $user->name)
+            ->with('userEmail', $user->email)
             ->with('userId', $user->id);
     }
     
