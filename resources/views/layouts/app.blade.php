@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     </head> 
+    
     <body>
         <div class="min-h-screen bg-gray-100">
             <!-- Conteúdo da página -->
@@ -48,9 +49,16 @@
                 const sessionUserName = "{{ session('userName', 'Usuário') }}";
                 const sessionUserEmail = "{{ session('userEmail', 'Email') }}";
                 const sessionUserId = "{{ session('userId', 'Usuário') }}";
+                const sessionIsAdmin = "{{ session('userAdmin', '') }}";
 
                 let storedUserName = localStorage.getItem('userName');
                 let storedUserEmail = localStorage.getItem('userEmail');
+                let storedUserAdmin = localStorage.getItem('userAdmin');
+
+                if (sessionIsAdmin !== '' && sessionIsAdmin !== storedUserAdmin) {
+                    localStorage.setItem('userAdmin', sessionIsAdmin);
+                    storedUserAdmin = sessionIsAdmin;
+                }
                 
                 if (sessionUserName !== 'Usuário' && sessionUserName !== storedUserName) {
                     localStorage.setItem('userName', sessionUserName);

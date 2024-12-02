@@ -13,21 +13,6 @@
                     Configurações
                 </h1>
                 <p>Gerencie as configurações da sua conta e preferências</p>
-
-                <!-- <div class="group-buttons-actions">
-                    <a 
-                        href="{{ route('files.index', ['showAll' => true]) }}" 
-                        class="btn btn-allFiles {{ request('showAll') == '1' ? 'ativo' : '' }}">
-                        <i data-feather="file-text" size="16"></i>    
-                        Todos Arquivos
-                    </a>
-                    <a 
-                        href="{{ route('files.index', ['showAll' => false]) }}" 
-                        class="btn btn-myFiles {{ request('showAll') == '0' ? 'ativo' : '' }}">
-                        <i data-feather="file" size="16"></i>    
-                        Meus Arquivos
-                    </a>
-                </div> -->
             </div>
 
             <div class="row">

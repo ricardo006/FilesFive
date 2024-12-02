@@ -52,18 +52,24 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const storedUserName =localStorage.getItem('userName') || 'Usuário';
-        const storedUserEmail =localStorage.getItem('userEmail') || 'email@exemplo.com';
+        const storedUserName = localStorage.getItem('userName') || 'Usuário';
+        const storedUserEmail = localStorage.getItem('userEmail') || 'email@exemplo.com';
 
         const modalOverlay = document.getElementById('modalOverlay');
-        const modalContent =document.getElementById('modalContent');
+        const modalContent = document.getElementById('modalContent');
         const closeContainer = document.querySelector(".close-container");
+
         const modalUserName = document.getElementById('modalUserName');
         const modalUserEmail = document.getElementById('modalUserEmail');
+
         const userNameNavBar = document.getElementById('usernamenavbar');
 
-        modalUserName.textContent =storedUserName;
-        modalUserEmail.textContent =storedUserEmail;
+        if (userNameNavBar) {
+            userNameNavBar.textContent = storedUserName;
+        }
+
+        modalUserName.textContent = storedUserName;
+        modalUserEmail.textContent = storedUserEmail;
 
         closeContainer.addEventListener("click", function () {
             modalOverlay.style.display = 'none';

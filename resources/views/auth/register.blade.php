@@ -21,22 +21,16 @@
 
                     <label for="email">Email</label>
                     <input id="email" type="email" name="email" class="form-control" value="{{ old('email') }}" required autocomplete="email">
-                    @error('email')
-                        <div class="error-message">{{ $message }}</div>
-                    @enderror
+                    <div class="error-message" id="nameError">@error('email') {{ $message }} @enderror</div>
 
                     <label for="password">Senha</label>
                     <input id="password" type="password" name="password" class="form-control" required autocomplete="current-password">
-                    @error('password')
-                        <div class="error-message">{{ $message }}</div>
-                    @enderror
+                    <div class="error-message" id="nameError">@error('password') {{ $message }} @enderror</div>
 
                     <label for="password_confirmation">Confirmar Senha</label>
                     <input id="password_confirmation" type="password" name="password_confirmation" class="form-control" required autocomplete="current-password">
-                    @error('password_confirmation')
-                        <div class="error-message">{{ $message }}</div>
-                    @enderror
-
+                    <div class="error-message" id="nameError">@error('password_confirmation') {{ $message }} @enderror</div>
+                    
                     <button type="submit" class="btn btn-entrar">
                         <span class="text-entrar">Cadastrar</span>
                     </button>

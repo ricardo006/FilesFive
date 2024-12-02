@@ -53,15 +53,15 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $user = Auth::user();
-    
+
         // Redireciona para a rota de dashboard ou outra rota protegida
         return redirect()->intended(route('dashboard'))
             ->with('success', 'Login realizado com sucesso.')
             ->with('userName', $user->name)
             ->with('userEmail', $user->email)
+            ->with('userAdmin', $user->is_admin)
             ->with('userId', $user->id);
     }
-    
 
     /**
      * Destroy an authenticated session.
@@ -72,6 +72,7 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request)
     {
         Auth::guard('web')->logout();
+        session()->forget('userAdmin');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
