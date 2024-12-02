@@ -1,6 +1,9 @@
-# Dashboard do Projeto Laravel
+# Login do Projeto
 
 ![Tela de Login](public/images/login-demo.png)
+
+# Dashboard do Projeto
+
 ![Tela de Dashboard](public/images/dashboard-demo.png)
 
 ## Sobre o Projeto
@@ -8,7 +11,6 @@
 Este é um projeto desenvolvido utilizando o framework Laravel, com o objetivo de criar uma interface intuitiva para gerenciar dados de forma eficiente. A tela de Dashboard oferece uma visão geral das principais métricas e informações do sistema.
 
 Um dos grandes desafios deste projeto foi trabalhar com arquivos e o gerenciamento da arquitetura, permitindo que cada usuário possa aprovar ou reprovar arquivos de forma personalizada. Essa funcionalidade foi implementada com foco na organização e segurança dos dados, garantindo uma experiência robusta e confiável.
-
 
 ## Funcionalidades Principais
 
