@@ -6,7 +6,7 @@
         
         <div class="table-container">
             <div class="title-table">
-                <h1 class="title-page">Meus Arquivos</h1>
+                <h1 class="title-page">{{ request('showAll') == 0 ? 'Meus Arquivos' : 'Todos Arquivos'}}</h1>
                 <div class="group-buttons-actions">
                     <a 
                         href="{{ route('files.index', ['showAll' => true]) }}" 
@@ -26,6 +26,7 @@
                 <thead>
                     <tr class="tr-header">
                         <th>Nome do Arquivo</th>
+                        <th>Autor</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
@@ -34,29 +35,51 @@
                     @forelse($files as $file)
                         <tr>
                             <td>{{ $file->path }}</td>
-                            <td>{{ ucfirst($file->status) }}</td>
+                            <td>{{ ucfirst($file->user->name ?? 'Desconhecido') }}</td>
+                            <td>{{ ucfirst($file->translated_status) }}</td>
                             <td class="action-cell">
-                                <!-- Verificar se o usuário tem permissão -->
+                                <!-- Verificando se o usuário tem permissão -->
                                 @can('updateStatus', $file)
-                                    <!-- Botão de Aprovar -->
-                                    <form action="{{ route('files.approve', $file->id) }}?showAll={{ request('showAll') }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn-action btn-aprovar">
-                                            <i data-feather="check"></i> 
-                                            Aprovar
-                                        </button>
-                                    </form>
+                                    @if($file->status === 'pending')
+                                        <!-- Botão de Aprovar -->
+                                        <form action="{{ route('files.approve', $file->id) }}?showAll={{ request('showAll') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn-action btn-aprovar">
+                                                <i data-feather="check"></i> 
+                                                Aprovar
+                                            </button>
+                                        </form>
 
-                                    <!-- Botão de Reprovar -->
-                                    <form action="{{ route('files.reject', $file->id) }}?showAll={{ request('showAll') }}" method="POST" style="display: inline;">
-                                        @csrf
-                                        @method('PUT')
-                                        <button type="submit" class="btn-action btn-reprovar">
-                                            <i data-feather="x-circle"></i> 
-                                            Reprovar
-                                        </button>
-                                    </form>
+                                        <!-- Botão de Reprovar -->
+                                        <form action="{{ route('files.reject', $file->id) }}?showAll={{ request('showAll') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn-action btn-reprovar">
+                                                <i data-feather="x-circle"></i> 
+                                                Reprovar
+                                            </button>
+                                        </form>
+                                    @elseif($file->status === 'approved')
+                                        <!-- Botão de Reprovar -->
+                                        <form action="{{ route('files.reject', $file->id) }}?showAll={{ request('showAll') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn-action btn-reprovar">
+                                                <i data-feather="x-circle"></i> 
+                                                Reprovar
+                                            </button>
+                                        </form>
+                                    @elseif($file->status === 'rejected')
+                                        <form action="{{ route('files.approve', $file->id) }}?showAll={{ request('showAll') }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn-action btn-aprovar">
+                                                <i data-feather="check"></i> 
+                                                Aprovar
+                                            </button>
+                                        </form>
+                                    @endif
                                 @else
                                     <!-- Caso o usuário não tenha permissão -->
                                     <span>Sem permissões</span>

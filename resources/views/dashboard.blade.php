@@ -5,7 +5,10 @@
     @include('components.navbar')   
 
     <div class="pt-6 bg-white border-b border-gray-200">
-        <h2 class="title-page">Dashboard</h2>
+        <div class="title-container">
+            <h2 class="title-page">Dashboard</h2>
+            <span class="title-username" id="username">Bem Vindo, {{ session('userName', 'Usuário') }}</span>
+        </div>    
         <div class="content-card-dashboard">
             <a href="{{ route('files.create') }}" class="card-upload-arquivos card-upload">
                 <div class="card-upload-arquivos-content">
@@ -16,7 +19,7 @@
                 </div>
             </a>
                                         
-            <a href="{{ route('files') }}" class="card-upload-arquivos card-list">
+            <a href="{{ route('files.index') }}" class="card-upload-arquivos card-list">
                 <div class="card-upload-arquivos-content">
                     <p class="text-listagem-upload">
                         <h2 class="h2-listagem">Listagem de Arquivos</h2>

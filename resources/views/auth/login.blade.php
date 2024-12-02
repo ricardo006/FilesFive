@@ -7,19 +7,19 @@
                 <h2 class="login-title">Login</h2>
             </div>
             <div class="content-form">
-                <form class="form-login" method="POST" action="{{ route('login') }}">
+                <form class="form-login" method="POST" action="{{ route('login') }}" novalidate>
                     @csrf
 
                     <label class="" for="email">Email</label>
                     <input id="email" type="email" name="email" placeholder="Email" class="form-control" required>
                     @error('email')
-                        <div class="error-message" style="color: red;">{{ $message }}</div>
+                        <div class="error-message">{{ $message }}</div>
                     @enderror
 
                     <label class="" for="password">Senha</label>
                     <input id="password" type="password" name="password" placeholder="Senha" class="form-control" required>
                     @error('password')
-                        <div class="error-message" style="color: red;">{{ $message }}</div>
+                        <div class="error-message">{{ $message }}</div>
                     @enderror
                     
                     <label class="check-left">

@@ -14,51 +14,64 @@
         <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-
-        <!-- Importar o JavaScript de notificações -->
-        <script src="{{ asset('js/notifications.js') }}" defer></script>
-        
-        <!-- Carregar a biblioteca SweetAlert2 -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head> 
     <body>
         <div class="min-h-screen bg-gray-100">
-
-            <!-- Page Heading -->
-            @if(isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                @yield('content') <!-- Use a section for the content -->
-            </main>
+            <!-- Conteúdo da página -->
+            @yield('content')
         </div>
 
-        <!-- Definir a variável de mensagem de sucesso do Blade -->
-        <script>
-            @if(session('success'))
-                window.successMessage = "{{ session('success') }}";
-            @else
-                window.successMessage = null;
-            @endif
-        </script>
-
-        <!-- Importar o arquivo principal de JavaScript que usa a função de notificação -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ mix('js/app.js') }}"></script>
-
         <!-- Carregar scripts na ordem correta -->
-        <script src="{{ mix('js/notifications.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Carregar Feather Icons -->
         <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
         <script>
-            feather.replace();
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const alert = document.querySelector('.alert');
+
+                if (alert) {
+                    setTimeout(() => {
+                        alert.style.opacity = 0;
+
+                        setTimeout(() => {
+                            alert.remove();
+                        }, 1000);
+                    }, 3000);
+                }
+            });
+        </script>
+        
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const sessionUserName = "{{ session('userName', 'Usuário') }}";
+                const sessionUserEmail = "{{ session('userEmail', 'Email') }}";
+                const sessionUserId = "{{ session('userId', 'Usuário') }}";
+
+                let storedUserName = localStorage.getItem('userName');
+                let storedUserEmail = localStorage.getItem('userEmail');
+                
+                if (sessionUserName !== 'Usuário' && sessionUserName !== storedUserName) {
+                    localStorage.setItem('userName', sessionUserName);
+                    storedUserName = sessionUserName;
+                }
+                
+                if (sessionUserEmail !== 'Email' && sessionUserEmail !== storedUserEmail) {
+                    localStorage.setItem('userEmail', sessionUserEmail);
+                    storedUserEmail = sessionUserEmail;
+                }
+
+                const usernameElement = document.getElementById('username');
+                if (usernameElement) 
+                    usernameElement.textContent = `Bem Vindo, ${storedUserName}!`;
+
+                const usernameNavbarElement = document.getElementById('usernamenavbar');
+                if (usernameNavbarElement) 
+                    usernameNavbarElement.innerHTML = `${storedUserName} <i data-feather="user" class="feather-18"></i>`;
+
+                feather.replace();
+            });
         </script>
     </body>
 </html>
